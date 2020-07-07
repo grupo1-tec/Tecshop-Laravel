@@ -11,7 +11,10 @@ class User extends Authenticatable
 {
     use Notifiable;
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'fechaNac','email',
+        'telefono','img','password',
+        'activo','admin','documento_tipo',
+        'documento_nro'
     ];
 
     protected $hidden = [
@@ -21,4 +24,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function servicios(){
+        return $this->embedsMany('App\Servicio');
+    }
 }

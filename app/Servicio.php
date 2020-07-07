@@ -11,4 +11,8 @@ class Servicio extends Model
         'servicio_nombre','servicio_descripcion',
         'servicio_precio','cat_id',
     ];
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

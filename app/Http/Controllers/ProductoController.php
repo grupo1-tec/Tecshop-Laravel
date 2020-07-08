@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Servicio;
+use App\Producto;
 use Illuminate\Http\Request;
 
-class ServicioController extends Controller
+class ProductoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ServicioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Servicio  $servicio
+     * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Servicio $servicio)
+    public function show(Producto $producto)
     {
         //
     }
@@ -52,10 +52,10 @@ class ServicioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Servicio  $servicio
+     * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Servicio $servicio)
+    public function edit(Producto $producto)
     {
         //
     }
@@ -64,10 +64,10 @@ class ServicioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Servicio  $servicio
+     * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Servicio $servicio)
+    public function update(Request $request, Producto $producto)
     {
         //
     }
@@ -75,10 +75,10 @@ class ServicioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Servicio  $servicio
+     * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Servicio $servicio)
+    public function destroy(Producto $producto)
     {
         //
     }

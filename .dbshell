@@ -1,0 +1,5 @@
+show dbs
+use TecShop
+show collections
+show users;
+exit()

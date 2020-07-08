@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 //use Illuminate\Foundation\Auth\User as Authenticatable;
-use Jenssegers\Mongodb\User as Authenticatable;
+use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Jenssegers\Mongodb\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -24,8 +25,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    /*
     public function servicios(){
         return $this->embedsMany('App\Servicio');
     }
+
+    public function productos(){
+        return $this->hasMany('App\Producto');
+    }
+
+    public function comentarios_prod(){
+        return $this->hasMany('App\Comentario_prod');
+    }
+
+    public function comentarios_serv(){
+        return $this->hasMany('App\Comentario_serv');
+    }
+    */
 }

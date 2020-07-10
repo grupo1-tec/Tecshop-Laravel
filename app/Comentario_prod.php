@@ -8,7 +8,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class Comentario_prod extends Model
 {
     protected $fillable = [
-        'Comen_texto', 'Comen_fecha',
+        'Comen_texto',
     ];
 
     public function User(){

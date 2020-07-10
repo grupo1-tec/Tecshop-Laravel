@@ -11,13 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/servicios', 'ServiciosController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/productos', 'ProductoController@index');
+Route::get('/productos/{id}', 'ProductoController@show')->name('producto');
+Route::post('/productos','ComentarioProdController@store');
+Route::get('/servicios/{id}', 'ServiciosController@show')->name('servicio');
+Route::post('/servicios','ComentarioController@store');
 
 Auth::routes();
 

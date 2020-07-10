@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comentario_prod;
+use App\Producto;
 use Illuminate\Http\Request;
 
 class ComentarioProdController extends Controller
@@ -35,7 +36,18 @@ class ComentarioProdController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'content'=>'required:max:250',
+        ]);
+
+        $comment = new Comentario_prod();
+        $comment->user_id = $request->user()->id;
+        $comment->Comen_texto = $request->get('content');
+
+        $producto = Producto::find($request->get('producto_id'));
+        $producto->Comentarios()->save($comment);
+
+        return redirect()->route('producto',['id'=>$request->get('producto_id')]);
     }
 
     /**

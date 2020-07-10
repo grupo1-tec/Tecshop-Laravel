@@ -13,10 +13,11 @@ class CreateProductosTable extends Migration
      */
     public function up()
     {
+        /*
         Schema::create('productos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-        });
+        });*/
     }
 
     /**

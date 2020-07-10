@@ -25,9 +25,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    /*
+    
     public function servicios(){
-        return $this->embedsMany('App\Servicio');
+        return $this->hasMany('App\Servicios');
     }
 
     public function productos(){
@@ -41,5 +41,5 @@ class User extends Authenticatable
     public function comentarios_serv(){
         return $this->hasMany('App\Comentario_serv');
     }
-    */
+    
 }

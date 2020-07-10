@@ -12,7 +12,7 @@ class Categorias extends Model
     ];
 
     public function Productos(){
-        return $this->embedsMany('App\Producto');
+        return $this->hasMany('App\Producto');
     }
 
     public function Servicios(){

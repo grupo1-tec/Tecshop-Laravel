@@ -6,17 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCategoriasTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
+        /*
         Schema::create('categorias', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-        });
+        });*/
     }
 
     /**

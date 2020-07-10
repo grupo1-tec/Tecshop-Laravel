@@ -14,7 +14,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $productos = Producto::all();
+        return view('index2', compact('productos'));
     }
 
     /**
@@ -44,9 +45,9 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto $producto)
+    public function show($id)
     {
-        //
+        return view('productoUnico',['producto' => Producto::find($id)]);
     }
 
     /**

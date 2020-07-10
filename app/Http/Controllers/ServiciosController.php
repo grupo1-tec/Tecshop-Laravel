@@ -14,7 +14,8 @@ class ServiciosController extends Controller
      */
     public function index()
     {
-        //
+        $servicios = Servicios::all();
+        return view('index', compact('servicios'));
     }
 
     /**
@@ -44,9 +45,9 @@ class ServiciosController extends Controller
      * @param  \App\Servicios  $servicios
      * @return \Illuminate\Http\Response
      */
-    public function show(Servicios $servicios)
+    public function show($id)
     {
-        //
+        return view('servicioUnico',['servicio' => Servicios::find($id)]);
     }
 
     /**
@@ -82,4 +83,5 @@ class ServiciosController extends Controller
     {
         //
     }
+    
 }

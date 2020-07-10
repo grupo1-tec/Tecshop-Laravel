@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Comentario;
+use App\Comentario_serv;
+use App\Servicios;
 use Illuminate\Http\Request;
 
 class ComentarioController extends Controller
@@ -35,7 +36,18 @@ class ComentarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'content'=>'required:max:250',
+        ]);
+
+        $comment = new Comentario_serv();
+        $comment->user_id = $request->user()->id;
+        $comment->Comen_texto = $request->get('content');
+
+        $servicio = Servicios::find($request->get('servicio_id'));
+        $servicio->Comentarios()->save($comment);
+
+        return redirect()->route('servicio',['id'=>$request->get('servicio_id')]);
     }
 
     /**

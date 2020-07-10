@@ -3,3 +3,26 @@ use TecShop
 show collections
 show users;
 exit()
+use TecShop
+show collections
+db.categorias.find()
+db.users.find()
+db.users.find().pretty()
+db.categorias.find().pretty()
+show collections
+db.servicios.find().pretty()
+db.users.find().pretty()
+use TecShop
+show collections
+db.users.find().pretty()
+use TecShop
+show collections
+db.postea.find()
+db.users.find()
+db.users.find().pretty()
+db.comentarios.find().pretty()
+show collections
+use TecShop
+show collections
+db.servicios.find().pretty()
+db.users.find().pretty()

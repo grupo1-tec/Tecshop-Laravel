@@ -15,16 +15,21 @@ class UserSeeder extends Seeder
         ->create()
         ->each(function($user){
             $user->servicios()->createMany(
-                factory(App\Servicios::class,2)
-                ->create()
-                ->each(function($servicio){
-                    $servicio->Comentarios()->createMany(
-                        factory(App\Comentario_serv::class,5)->make()->toArray()
-                    );                                       
-                })
-            );
+                factory(App\Servicios::class,2)->make()->toArray()
+            ); 
+         });
+         
+        /*$usuarios = App\User::all();
+        foreach( $usuarios as $usuario ) {
+            $servicios = $usuario->Servicios()->all();
+            foreach( $servicios as $servicio){
+                $servicio->Comentarios()->createMany(
+                    factory(App\Comentario_serv::class,5)->make()->toArray()
+                );
+            }
+ 
             
-        });
+        }*/
     }
 
 

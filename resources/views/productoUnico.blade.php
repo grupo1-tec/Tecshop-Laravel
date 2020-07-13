@@ -5,7 +5,7 @@
         <div class="row justify-content-md-center">
             <div class="col-md-8">
                 <div class="card">
-                    <img src="{{($producto->prod_img)}}" class="card-img-top" alt="">
+                    <img src="{{asset($producto->prod_img)}}" class="card-img-top" alt="">
                     <!--<img src="{{Storage::url($producto->image)}}" class="card-img-top" alt="">-->
                     <div class="card-body">
                         <h3 class="card-title">{{$producto->prod_nombre}}</h3>

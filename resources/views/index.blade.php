@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <script src="{{asset('js/app.js')}}"></script>
-    <title>Mi app de Laravel</title>
-</head>
-<body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container text-center">
-            <h1 class="display-4">¡POSTEA!</h1>
-        </div>
-    </div>
+@extends('layouts.app')
 
-    <div class="container">
+@section('content')
+<div class="container">
+    @auth
+    <div class="button_myPosts">
+        <a class="btn btn-dark btn-lg btn-block" href="{{ route('MiServicios') }}" role="button">Ver solo mis servicios</a>
+    </div>
+    </br>
+    <div class="button_createPost">
+        <a class="btn btn-success btn-lg btn-block" href="{{ route('crearservicio') }}" role="button">Crear un servicio</a>
+    </div>
+    </br>
+    @endauth
         @foreach($servicios as $servicio)
         <div class="row md-4 justify-content-md-center">
             <div class="col-md-6">
@@ -30,5 +27,4 @@
         </div>
         @endforeach
     </div>
-</body>
-</html>
+@endsection

@@ -11,13 +11,21 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $users = factory(App\User::class,10)
+        $users = factory(App\User::class,5)
         ->create()
         ->each(function($user){
             $user->servicios()->createMany(
                 factory(App\Servicios::class,2)->make()->toArray()
             ); 
          });
+
+        $users1 = factory(App\User::class,5)
+        ->create()
+        ->each(function($user){
+            $user->productos()->createMany(
+                factory(App\Producto::class,2)->make()->toArray()
+            ); 
+          });
          
         /*$usuarios = App\User::all();
         foreach( $usuarios as $usuario ) {
@@ -45,4 +53,6 @@ class UserSeeder extends Seeder
         });
     }
      */
+
+    //ObjectId("5f092fa424739a71cd4380bf")
 }

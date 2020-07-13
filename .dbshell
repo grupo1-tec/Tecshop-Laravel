@@ -26,3 +26,7 @@ use TecShop
 show collections
 db.servicios.find().pretty()
 db.users.find().pretty()
+use Tecshop
+use TecShop
+show collections
+db.users.find()

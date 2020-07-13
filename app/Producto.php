@@ -9,7 +9,7 @@ class Producto extends Model
 {
     protected $fillable = [
         'prod_nombre', 'prod_img', 'prod_stock', 'prod_precio', 
-        'prod_activo',
+        'prod_activo', 'categoria_id',
     ];
 
     public function Categorias(){

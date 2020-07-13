@@ -8,7 +8,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class Servicios extends Model
 {
     protected $fillable = [
-        'ser_nombre', 'ser_img','ser_descripcion', 'ser_precio'
+        'ser_nombre', 'ser_img','ser_descripcion', 'ser_precio', 'categoria_id',
     ];
 
     public function User(){

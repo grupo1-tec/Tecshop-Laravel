@@ -5,7 +5,7 @@
         <div class="row justify-content-md-center">
             <div class="col-md-8">
                 <div class="card">
-                    <img src="{{($servicio->ser_img)}}" class="card-img-top" alt="">
+                    <img src="{{asset($servicio->ser_img)}}" class="card-img-top" alt="">
                     <!--<img src="{{Storage::url($servicio->image)}}" class="card-img-top" alt="">-->
                     <div class="card-body">
                         <h3 class="card-title">{{$servicio->ser_nombre}}</h3>

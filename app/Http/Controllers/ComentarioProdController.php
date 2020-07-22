@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comentario_prod;
 use App\Producto;
 use Illuminate\Http\Request;
+use App\Notifications\newComment;
 
 class ComentarioProdController extends Controller
 {
@@ -43,8 +44,14 @@ class ComentarioProdController extends Controller
         $comment = new Comentario_prod();
         $comment->user_id = $request->user()->id;
         $comment->Comen_texto = $request->get('content');
+        $comment->user_img = $request->user()->img;
 
         $producto = Producto::find($request->get('producto_id'));
+        $user=$producto->user()->get()[0];
+        // $user->notify(new newComment("producto",$request->user(),$producto));
+        if ($comment->user_id != $producto->user_id){
+            $user->notify(new newComment("producto",$request->user(),$producto));
+        }
         $producto->Comentarios()->save($comment);
 
         return redirect()->route('producto',['id'=>$request->get('producto_id')]);

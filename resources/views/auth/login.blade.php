@@ -1,16 +1,31 @@
 @extends('layouts.app')
 
-@section('content')
+<div style="margin-top:20vh"></div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
-
                 <div class="card-body">
+                    <div class="form-group row"> 
+                    <label class="col-md-4 col-form-label text-md-right"></label>
+                    <div class="col-md-6">
+                        <a href="{{ route('social.auth', 'facebook') }}">
+                            <label class="facebook"> Continua con Facebook</label>
+                        </a>
+
+                    </div>
+                    </div>
+                    <div class="form-group row"> 
+                        <label class="col-md-4 col-form-label text-md-right"></label>
+                        <div class="col-md-6">
+                            <a href="{{ route('social.auth', 'google') }}">
+                                <label class="google" for="">Continua con google</label>
+                            </a>
+                        </div>
+                    </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -70,4 +85,3 @@
         </div>
     </div>
 </div>
-@endsection

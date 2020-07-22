@@ -5,9 +5,9 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 //use Illuminate\Foundation\Auth\User as Authenticatable;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+//use Illuminate\Notifications\Notifiable;
 use Jenssegers\Mongodb\Eloquent\Model;
-
+use Boytunghc\LaravelMongoNotifiable\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -15,7 +15,7 @@ class User extends Authenticatable
         'name', 'fechaNac','email',
         'telefono','img','password',
         'activo','admin','documento_tipo',
-        'documento_nro'
+        'documento_nro','user_img'
     ];
 
     protected $hidden = [

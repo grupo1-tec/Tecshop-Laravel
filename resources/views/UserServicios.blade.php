@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+<div style="margin-top:20vh"></div>
 <div class="container">
     @foreach( $servicios as $servicio)
     <div class="row mb-4 justify-content-md-center">
@@ -25,4 +25,3 @@
     </div>
     @endforeach
 </div>
-@endsection

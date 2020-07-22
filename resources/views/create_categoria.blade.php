@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+<div style="margin-top:20vh"></div>
 <div class="container">
     <div class="row justify-content-center">
         <h2>Nueva categoría</h2>
@@ -29,4 +29,3 @@
         </div>
     <form>
 </div>
-@endsection

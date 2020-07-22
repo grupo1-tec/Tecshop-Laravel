@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+<div style="margin-top:20vh"></div>
 <div class="container">
     @foreach( $productos as $producto)
     <div class="row mb-4 justify-content-md-center">
@@ -17,7 +17,7 @@
                 <form method="POST" action="{{ url("productos/{$producto->id}") }}">
                     @csrf
                     @method('DELETE')
- 
+                    <a type="button" class="btn btn-outline-warning" href="{{action('ProductoController@edit', $producto->id)}}">Editar</a>
                     <button type="submit" class="btn btn-outline-danger">Eliminar</button>
                 </form>
             </div>
@@ -25,4 +25,3 @@
     </div>
     @endforeach
 </div>
-@endsection

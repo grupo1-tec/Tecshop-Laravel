@@ -29,5 +29,15 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'facebook' => [
+        'client_id' => '293791268639438',
+        'client_secret' => '7e23169282631101cc8ec12e3915de7d',
+        'redirect' => 'https://tecshop.gq/auth/facebook/callback'
+    ],
+    'google' => [
+        'client_id' => '555362432967-pj93m8ini5r56ks60hail24adun7ff2p.apps.googleusercontent.com',
+        'client_secret' => 'SxeIR9LuUTlZ7tSWdtOtFLjx',
+        'redirect' => 'https://tecshop.gq/auth/google/callback'
+    ]
 
 ];

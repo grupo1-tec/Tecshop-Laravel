@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -19,14 +20,27 @@ class UserSeeder extends Seeder
             ); 
          });
 
-        $users1 = factory(App\User::class,5)
+        $users1 = factory(App\User::class,10)
         ->create()
         ->each(function($user){
             $user->productos()->createMany(
-                factory(App\Producto::class,2)->make()->toArray()
+                factory(App\Producto::class,8)->make()->toArray()
             ); 
           });
-         
+        
+        DB::table('users')->insert([
+            'name' => 'TecShop',
+            'fechaNac' => '1990-07-20',
+            'email' => 'tecshop@gmail.com',
+            'telefono' => '4342342344',
+            'user_img' => 'https://lorempixel.com/400/300/?27240',
+            'password' => bcrypt('password'),
+            'remember_token' => Str::random(10),
+            'activo' => 'true',
+            'admin' => 'true',
+            'documento_tipo' => 'DNI',
+            'documento_nro' => "56745299",
+        ]);
         /*$usuarios = App\User::all();
         foreach( $usuarios as $usuario ) {
             $servicios = $usuario->Servicios()->all();
@@ -55,4 +69,5 @@ class UserSeeder extends Seeder
      */
 
     //ObjectId("5f092fa424739a71cd4380bf")
+    
 }

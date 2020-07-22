@@ -24,11 +24,11 @@ $factory->define(User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'telefono'=> $faker->phoneNumber, //phoneNumber
-        'img'=> $faker->imageUrl(400,300),
+        'user_img'=> $faker->imageUrl(400,300),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
-        'activo' => $faker->boolean($chanceOfGettingTrue = 50),
-        'admin' => $faker->boolean($chanceOfGettingTrue = 50),
+        'activo' => $faker->randomElement(['true','false']),
+        'admin' => $faker->randomElement(['true','false']),
         'documento_tipo' => $faker->randomElement(['DNI', 'RUC', 'PA']),//randomElement($array = array ('a','b','c')),
         'documento_nro' => $faker->randomNumber($nbDigits = 8, $strict = true)//randomDigit numberBetween($min = 1000, $max = 9000),
     ];

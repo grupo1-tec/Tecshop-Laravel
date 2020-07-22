@@ -10927,4 +10927,17 @@ a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+.round {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.facebook{
+  background-color: rgb(0, 66, 233 );
+  border-radius: 10px;
+  color: white;
+  padding:10px;
+}
+.google{
+  
+}
 

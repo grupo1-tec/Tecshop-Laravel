@@ -30,3 +30,51 @@ use Tecshop
 use TecShop
 show collections
 db.users.find()
+use TecShop
+show collections
+db.users.find().pretty()
+use TecShop
+show collections
+db.banners.find()
+db.banners.remove({_id:ObjectId("5f12697cd6975e1b2542f186")})
+db.banners.find()
+use TecShop
+db.users.find().pretty()
+use TecShop
+db.users.find().pretty()
+db.users.find().count()
+use TecShop
+db.users.find().count()
+use TecShop
+db.users.find().count()
+db.users.find().pretty()
+db.banners.find().pretty()
+db.users.find().count()
+db.users.find().pretty()
+use TecShop
+db.users.find().pretty()
+db.categorias.find().pretty()
+db.productos.find().pretty()
+db.users.find().pretty()
+db.productos.find().pretty()
+db.users.find().pretty()
+db.banners.find().pretty()
+db.productos.find().count()
+db.productos.find().pretty()
+db.servicio.find().pretty()
+db.servicios.find().pretty()
+db.categorias.find().pretty()
+db.productos.find().pretty()
+db.productos.find().pretty()
+use TecShop
+db.productos.find().pretty()
+db.users.find().pretty()
+use TecShop
+show collections
+db.users.find().count()
+db.users.find().pretty()
+use Tecshop
+show collections
+use TecShop
+show collections
+db.users.find().pretty()

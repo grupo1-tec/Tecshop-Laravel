@@ -8,8 +8,8 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class Producto extends Model
 {
     protected $fillable = [
-        'prod_nombre', 'prod_img', 'prod_stock', 'prod_precio', 
-        'prod_activo', 'categoria_id',
+        'prod_nombre', 'prod_img', 'prod_descripcion', 'prod_stock', 'prod_precio', 
+        'categoria_id',
     ];
 
     public function Categorias(){
@@ -22,6 +22,12 @@ class Producto extends Model
 
     public function Comentarios(){
         return $this->embedsMany('App\Comentario_prod');
+    }
+
+    public function scopeNombresM($query, $nombresM) {
+        if ($nombresM) {
+            return $query->where('title','like',"%$nombresM%");
+        }
     }
 
 }

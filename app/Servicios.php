@@ -23,4 +23,10 @@ class Servicios extends Model
         return $this->belongsTo('App\Categorias');
     }
 
+    public function scopeNombresM($query, $nombresM) {
+        if ($nombresM) {
+            return $query->where('title','like',"%$nombresM%");
+        }
+    }
+
 }

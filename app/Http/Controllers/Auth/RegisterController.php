@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -53,19 +53,26 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'telefono' => ['required', 'string', 'min:9', 'max:9'],
+            'documento_nro' => ['required', 'string', 'min:8', 'max:11'],
+            // 'user_img' => ['required','mimes:jpeg,png,jpg','max:2048'],
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
     protected function create(array $data)
-    {
+    {   
+        if(isset($data['user_img'])){
+            $image = $data['user_img'];
+            $imageName = time().$image->getClientOriginalName();
+            $data['user_img']->move(public_path('img/users'),$imageName);
+            $imageName='img/users/' .$imageName;
+        }
+        else{
+            $imageName = "";
+        }
         return User::create([
             'name' => $data['name'],
+            'user_img' =>  $imageName,
             'fechaNac' => $data['fechaNac'],
             'telefono' => $data['telefono'],
             'admin' => 'false',
@@ -73,8 +80,44 @@ class RegisterController extends Controller
             'documento_nro' => $data['documento_nro'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            
         ]);
     }
+
+    // public function create1(Request $request)
+    // {
+    //     $request->validate([
+    //         'name' => 'required|string|max:120',
+    //         'email' => 'required|email|max:100',
+    //         'password' => 'required|string|min:8|confirmed',
+    //         'user_img' => 'required|image|mimes:jpeg,png,jpg|:max2048',
+    //     ]);
+
+    //     $image = $request->file('user_img');
+    //     $imageName = time().$image->getClientOriginalName();
+    //     $nombre = $request->get('name');
+    //     $fechaNac = $request->get('fechaNac');
+    //     $email = $request->get('email');
+    //     $password = Hash::make($request->get('name'));
+    //     $activo = "true";
+    //     $admin = "false";
+    //     $documento_tipo = $request->get('documento_tipo');
+    //     $documento_nro = $request->get('documento_nro');
+
+    //     $usuario = new User();
+    //     $usuario->name = $nombre;
+    //     $usuario->fechaNac = $fechaNac;
+    //     $usuario->email = $email;
+    //     $usuario->password = $password;
+    //     $usuario->activo = $activo;
+    //     $usuario->admin = $admin;
+    //     $usuario->documento_tipo = $documento_tipo;
+    //     $usuario->documento_nro = $documento_nro;
+    //     $usuario->save();
+
+    //     $request->user_img->move(public_path('img/users'),$imageName);
+
+    // }
 
     protected function createAdmin(array $data)
     {

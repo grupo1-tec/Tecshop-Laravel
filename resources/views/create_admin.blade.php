@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+    <div style="margin-top:20vh"></div>
     <div class="container">
         <div class="row justify-content-center">
             <h2>Nuevo Administrador</h2>
@@ -63,7 +63,7 @@
                     <label for="fechaNac" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Nacimiento') }}</label>
 
                     <div class="col-md-6">
-                        <input id="fechaNac" placeholder="DD-MM-YYYY" type="text" class="form-control @error('fechaNac') is-invalid @enderror" name="fechaNac" value="{{ old('fechaNac') }}" placeholder="dd/mm/yyyy" required autocomplete="fechaNac" autofocus>
+                        <input id="fechaNac" type="date" class="form-control @error('fechaNac') is-invalid @enderror" name="fechaNac" value="{{ old('fechaNac') }}" required autocomplete="fechaNac" autofocus>
 
                         @error('fechaNac')
                             <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
                     <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
 
                     <div class="col-md-6">
-                        <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" required autocomplete="telefono" autofocus>
+                        <input id="telefono" type="number" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" required autocomplete="telefono" autofocus>
 
                         @error('telefono')
                             <span class="invalid-feedback" role="alert">
@@ -105,11 +105,11 @@
                     <label for="documento_nro" class="col-md-4 col-form-label text-md-right">{{ __('N° de Documento') }}</label>
 
                     <div class="col-md-6">
-                        <input id="documento_nro" type="text" class="form-control @error('documento_nro') is-invalid @enderror" name="documento_nro" value="{{ old('documento_nro') }}"  required autocomplete="documento_nro" autofocus>
+                        <input id="documento_nro" type="number" class="form-control @error('documento_nro') is-invalid @enderror" name="documento_nro" value="{{ old('documento_nro') }}"  required autocomplete="documento_nro" autofocus>
 
                         @error('documento_nro')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong>{{ $message }}</strong> 
                             </span>
                         @enderror
                     </div>
@@ -117,7 +117,7 @@
 
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" >
                             {{ __('Register') }}
                         </button>
                     </div>
@@ -125,4 +125,3 @@
             </form>
         </div>
     </div>
-@endsection

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Tecshop- De compras</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -62,6 +62,11 @@
                 margin-bottom: 30px;
             }
         </style>
+        <meta name="og:title" content="TecShop">
+        <meta name="og:type" content="website">
+        <meta name="og:url" content="https://tecshoop.gq/welcome">
+        <meta property="og:image" content="">
+        <meta propety="og:description" content="Esta aplicacióne sta dedicada a la venta de productos y servicios">
     </head>
     <body>
         <div class="flex-center position-ref full-height">

@@ -34,29 +34,36 @@ class CategoriasController extends Controller
         $nombre = $request->get('cat_nombre');
 
         $categoria = new Categorias();
-        $categoria->cat_nombre = $nombre;
+        $categoria->cat_nombre =  $nombre;
         $categoria->save();
 
-        return redirect()->route('principal');
+        return redirect()->route('/');
     }
 
-    public function show(Categorias $categorias)
+    public function allx()
     {
-        //
+        $categorias = Categorias::all();
+        return view('categorias', compact('categorias'));
     }
 
-    public function edit(Categorias $categorias)
+    public function edit($id)
     {
-        
+        $categoria = Categorias::find($id);
+        return view('categoriaEdit',['categoria' => $categoria]);
     }
 
-    public function update(Request $request, Categorias $categorias)
+    public function update(Request $request)
     {
-        //
+        $categoria = Categorias::find($request->get('cat_id'));
+        $categoria->cat_nombre = $request->get('cat_nombre');
+        $categoria->save();
+        return redirect('/categorias/admin');
     }
 
-    public function destroy(Categorias $categorias)
+    public function destroy($id)
     {
-        //
+        $categoria = Categorias::find($id);
+        $categoria->delete();
+        return redirect('/categorias/admin');
     }
 }

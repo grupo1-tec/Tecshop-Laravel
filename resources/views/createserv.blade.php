@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+    <div style="margin-top:20vh"></div>
     <div class="container">
         <div class="row justify-content-center">
             <h2>Nuevo Servicio</h2>
@@ -91,4 +91,3 @@
             </form>
         </div>
     </div>
-@endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comentario_serv;
 use App\Servicios;
 use Illuminate\Http\Request;
+use App\Notifications\newComment;
 
 class ComentarioController extends Controller
 {
@@ -45,6 +46,11 @@ class ComentarioController extends Controller
         $comment->Comen_texto = $request->get('content');
 
         $servicio = Servicios::find($request->get('servicio_id'));
+        $user=$servicio->user()->get()[0];
+        // $user->notify(new newComment("servicio",$request->user(),$servicio));
+        if ($comment->user_id != $servicio->user_id){
+            $user->notify(new newComment("servicio",$request->user(),$servicio));
+        }
         $servicio->Comentarios()->save($comment);
 
         return redirect()->route('servicio',['id'=>$request->get('servicio_id')]);

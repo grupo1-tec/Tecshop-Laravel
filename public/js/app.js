@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    $(".dropdown-toggle").dropdown();
+});
+
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};

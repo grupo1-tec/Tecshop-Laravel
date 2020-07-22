@@ -1,32 +1,65 @@
 @extends('layouts.app')
+   
 
-@section('content')
+    <div style="margin-top:16vh"></div>
     <div class="container">
-        <div class="row justify-content-md-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <img src="{{asset($producto->prod_img)}}" class="card-img-top" alt="">
-                    <!--<img src="{{Storage::url($producto->image)}}" class="card-img-top" alt="">-->
-                    <div class="card-body">
-                        <h3 class="card-title">{{$producto->prod_nombre}}</h3>
-                        <h6 class="card-subtitle mb-2 text-muted">{{$producto->created_at->toFormattedDateString()}}</h6>
-                        <p class="card-text">{{$producto->prod_descripcion}}</p>
-                        <a href="{{action('ProductoController@index')}}" class="card-link">
-                            Todas las publicaciones
-                        </a>
-                    </div>
-                </div>
-                @auth
-                    <form action="{{action('ComentarioProdController@store',['producto_id' => $producto->id])}}"
-                            method="POST" enctype="multipart/form-data">
-                            @csrf
 
-                            <div class="form-group">
-                                <label class="col-sm-2 col-form-label" for="content">
-                                    {{__('Comment')}}
-                                </label>
-                                <div class="col-sm-12">
-                                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="3">
+        <div class="row" style="margin-bottom:-50px">
+            <div class="col">
+                <div class="current_page">
+                    <ul>
+                        <li><a href="{{action('ProductoController@index')}}" class="badge badge-light">
+                                <h3> Ver todos los productos</h3>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row product_row">
+
+            <div class="col-lg-7">
+                <div class="product_image">
+                    <div class="product_image_large"><img src="{{asset($producto->prod_img)}}" alt="" class=".img-responsive" style="width:100%"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="product_content">
+                    <h2 class="product_name" style="font-weight: bold">{{$producto->prod_nombre}}</h2>
+                    <div class="review_date">{{$producto->created_at->toFormattedDateString()}}</div>
+                    
+                    <div class="product_text">
+                        <p>{{$producto->prod_descripcion}}</p>
+                    </div>
+                    <br>
+                    <div class="product_price"><h6>S/{{($producto->prod_precio)}}</h6></div>						
+                    
+                    <div class="product_price"><h6>Stock: {{($producto->prod_stock)}}</h6></div>  
+                    @if (is_null($dueño->email))
+                        @else
+                        <div class="product_price"><h6>Correo: {{($dueño->email)}}</h6></div>
+                    @endif
+                   
+                    <div class="product_price"><h6>Teléfono: {{($dueño->telefono)}}</h6></div>                             
+                    
+                </div>
+            </div>
+        </div>
+
+        @auth
+           <div class="row">
+				<div class="col">
+					<div class="review_form_container">
+						<div class="review_form_title">{{__('Comment')}}</div>
+						<div class="review_form_content">
+							<form action="{{action('ComentarioProdController@store',['producto_id' => $producto->id])}}" id="review_form" class="review_form"
+                                method="POST" enctype="multipart/form-data">
+                                @csrf
+
+								<div class="d-flex flex-md-row flex-column align-items-start justify-content-between">
+                                    <textarea class="form-control @error('content') is-invalid @enderror review_form_text" id="content" name="content">
                                         {{old('content')}}
                                     </textarea>
                                     @error('content')
@@ -34,37 +67,95 @@
                                         <strong>{{$message}}</strong>
                                     </span>
                                     @enderror
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{__('Create')}}
-                                    </button>
-                                </div>
-                            </div>                    
-                    </form>
-                @endauth
-                
-                @guest
-                <p>Si deseas comentar 
-                    <a href="{{action('Auth\LoginController@showLoginForm')}}">inicia sesión</a> o
-                    <a href="{{action('Auth\RegisterController@showRegistrationForm')}}">regístrate</a>                
-                </p>
-                @endguest
-                
-                @forelse($producto->Comentarios as $comment)
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{$comment->user->name}}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{$comment->created_at->toFormattedDateString()}}</h6>
-                            <p class="card-text">{{$comment->Comen_texto}}</p>
-                        </div>
+								</div>								
+								<button type="submit" class="btn btn-secondary review_form_button">Crear</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+        @endauth
+        
+        @guest
+            <p>Si deseas comentar 
+                <a href="{{action('Auth\LoginController@showLoginForm')}}">inicia sesión</a> o
+                <a href="{{action('Auth\RegisterController@showRegistrationForm')}}">regístrate</a>                
+            </p>
+        @endguest
+
+       
+        <div class="row">
+            <div class="col">
+                <div class="reviews">
+                    <div class="reviews_title"><h3 style="font-weight:200">Comentarios</h3></div>
+                    <div class="reviews_container">
+                        <ul>
+                            @forelse($producto->Comentarios as $comment)
+                                <li class=" review clearfix">
+                                    <div class="review_image">
+                                        @if($comment->user->user_img !="")
+                                            <img src="{{asset($comment->user->user_img)}}" alt="">
+                                        @else
+                                            <img src="{{asset('img/users/unnamed.jpg')}}" alt="">
+                                        @endif
+                                    </div>
+                                    <div class="review_content">
+                                        <div class="review_name"><a href="#">{{$comment->user->name}}</a></div>
+                                        <div class="review_date">{{$comment->created_at->toFormattedDateString()}}</div>
+
+                                        <div class="review_text">
+                                            <p>{{$comment->Comen_texto}}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                @empty
+                                <p>No hay comentarios en esta publicación, se el primero</p>
+                            @endforelse
+                        </ul>
                     </div>
-                    @empty
-                    <p>No hay comentarios en esta publicación, se el primero</p>
-                @endforelse
+                </div>
+            </div>
+        </div>
+
+        
+
+
+        <br><br><br><br>
+       
+    </div>
+
+    <div class="super_container">
+        <div class="gallery">
+            <div class="gallery_image" style="background-image:url({{asset('img/backgrounds/gallery.jpg')}})"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="gallery_title text-center">
+                            <ul>
+                                <li><a href="#"><h1>RELACIONADOS</h1></a></li>
+                            </ul>
+                        </div>
+                        <div class="gallery_text text-center">Tal vez le interese estos productos relacionados</div>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery_slider_container">
+
+                <!-- Gallery Slider -->
+                <div class="owl-carousel owl-theme gallery_slider">
+
+                    <!-- Gallery Item -->
+                    @foreach($recomendados as $producto)
+                        <div class="">
+                            <a class="colorbox" href="{{action('ProductoController@show', $producto->id)}}">
+                                <img src="{{asset($producto->prod_img)}}" alt="">
+                            </a>
+                            <div class="promo_link"><a href="{{action('ProductoController@show', $producto->id)}}">{{$producto->prod_nombre}}</a></div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
-    @endsection
+
+@extends('layouts.footer')

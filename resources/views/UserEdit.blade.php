@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('content')
+    <div style="margin-top:20vh"></div>
     <div class="container col-md-8 col-md-offset-2">
         <div class="well well bs-component">
-            <form class="form-horizontal" method="post">
+            <form class="form-horizontal" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
                 @foreach ($errors->all() as $error)
@@ -17,12 +17,34 @@
                 <fieldset>
                     <legend>Editar Usuario</legend>
                     <div class="form-group">
+                        <label for="name" class="col-lg-label">Imagen</label>
+                        <div class="col-md-10">
+                            <li class="review clearfix" style="list-style:none;margin:0">
+                                <div class="review_image">
+                                    @if($usuario->user_img !="")
+                                        <img src="{{asset($usuario->user_img)}}" alt="">
+                                    @else
+                                        <img src="{{asset('img/users/unnamed.jpg')}}" alt="">
+                                    @endif
+                                </div>
+                                <div class="review_content">
+                                <div class="review_text">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input " id="user_img" name="user_img" >
+                                        <label class="custom-file-label" for="customFile">Imagen</label>
+                                    </div>
+                                </div>
+                                </div>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="name" class="col-lg-label">Nombre</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" id="name" name="name" value="{!!  $usuario->name !!}">
                         </div>
                     </div>
-
+                    
                     <div class="form-group">
                         <label for="email" class="col-lg-label">Email</label>
                         <div class="col-lg-10">
@@ -33,34 +55,41 @@
                     <div class="form-group">
                         <label for="fechaNac" class="col-lg-label">Fecha de Nacimineto</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="fechaNac" name="fechaNac" value="{!!  $usuario->fechaNac !!}">
+                            <input type="date" class="form-control" id="fechaNac" name="fechaNac" value="{!!  $usuario->fechaNac !!}">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="telefono" class="col-lg-label">Telefono</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="telefono" name="telefono" value="{!!  $usuario->telefono !!}">
+                            <input type="number" class="form-control" id="telefono" name="telefono" value="{!!  $usuario->telefono !!}">
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="documento_tipo" class="col-lg-label">Tipo de Documneto</label>
+                    <div class="form-group ">
+                        <label for="telefono" class="col-lg-label">Tipo de Documento</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="documento_tipo" name="documento_tipo" value="{!!  $usuario->documento_tipo !!}">
+                            <select class="form-control" id="documento_tipo" name="documento_tipo" > 
+                                <option value="{{$usuario->documento_tipo}}">{{$usuario->documento_tipo}}</option>
+                                @if ($usuario->documento_tipo=="DNI")
+                                    <option value="RUC" >RUC</option>
+                                @else
+                                    <option value="DNI" >DNI</option>
+                                @endif
+                            </select>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="documento_nro" class="col-lg-label">NRO de Documento</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="documento_nro" name="documento_nro" value="{!!  $usuario->documento_nro !!}">
+                            <input type="number" class="form-control" id="documento_nro" name="documento_nro" value="{!!  $usuario->documento_nro !!}">
                         </div>
                     </div>
  
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
-                            <a class="btn btn-dange" href="{{ route('productosindex') }}" role="button">Cancelar</a>
+                            <a class="btn btn-dange" href="{{ url('/') }}" role="button">Cancelar</a>
                             <button type="submit" class="btn btn-dark">Actualizar</button>
                         </div>
                     </div>
@@ -69,4 +98,3 @@
             </form>
         </div>
     </div>
-@endsection

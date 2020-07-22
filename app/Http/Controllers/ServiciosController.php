@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Servicios;
+use App\User;
+use App\Banner;
 use Illuminate\Http\Request;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +16,9 @@ class ServiciosController extends Controller
     public function index()
     {
         $servicios = Servicios::all();
-        return view('index', compact('servicios'));
+        $banner = Banner::all();
+        #return view('index', compact('servicios','banner'));
+        return view('index', compact('banner'));
     }
 
     public function create()
@@ -53,12 +57,48 @@ class ServiciosController extends Controller
 
     public function show($id)
     {
-        return view('servicioUnico',['servicio' => Servicios::find($id)]);
+        // $servicio = Servicios::find($id);
+        // $dueño = User::find($servicio->user_id);
+        // $servicios = Servicios::where('categoria_id', '=', $servicio->categoria_id)->where('_id', '<>', $id)->get()->toArray();
+        // $claves_aleatorias = array();
+        // if (count($servicios) < 3){
+        //     if (count($servicios) === 1){
+        //         array_push($claves_aleatorias, 0);
+        //     }else{
+        //         $claves_aleatorias = array_rand($servicios, count($servicios));
+        //     }            
+        // }else{
+        //     $claves_aleatorias = array_rand($servicios, 3);
+        // }
+        // $serviciosx = array();
+        // for ($i=0; $i < count($claves_aleatorias); $i++) { 
+        //     $id = $servicios[$claves_aleatorias[$i]]['_id'];
+        //     $servicio1 = Servicios::find($id);
+        //     array_push($serviciosx, $servicio1);
+        // }
+        // return view('servicioUnico',['servicio' => $servicio, 'recomendados' => $servicios, 'dueño' => $dueño]);
+        $servicio = Servicios::find($id);
+        $dueño = User::find($servicio->user_id);
+        $servicios = Servicios::where('categoria_id', '=', $servicio->categoria_id)->where('_id', '<>', $id)->get();
+        return view('servicioUnico',['servicio' => $servicio, 'recomendados' => $servicios, 'dueño' => $dueño]);
     }
 
     public function edit(Servicios $servicios)
     {
         //
+    }
+
+    public function read($id,$idn){
+        $user=Auth::user();
+        $n="";
+        foreach($user->unreadNotifications as $notification){
+            if(strcmp($notification->_id,$idn) === 0){
+                $n=$notification;
+                break;
+            }
+        }
+        $n->markAsRead();
+        return redirect()->route('servicio',['id' => $id]);
     }
 
     public function update(Request $request, Servicios $servicios)
@@ -80,4 +120,17 @@ class ServiciosController extends Controller
         return redirect('/servicios/MiServicios');
     }
     
+    public function busqueda(Request $request)
+    {
+        $nombreM =$request->get('buscarpor');
+        if(empty($nombreM)){
+            $servicios =Servicios::all();
+            $banner = Banner::all();
+            return view('index',compact('servicios', 'banner'));
+        }else{
+            $servicios =Servicios::where('ser_nombre','like',"%$nombreM%")->get();
+            $banner = Banner::all();
+            return view('index',compact('servicios', 'banner'));
+        }
+    }
 }

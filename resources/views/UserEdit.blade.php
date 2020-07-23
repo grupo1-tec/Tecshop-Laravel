@@ -9,13 +9,17 @@
                     <div class="alert alert-danger">{{ $error }}</div>
                 @endforeach
                 @if(session('status'))
+                <div class="col-md-10">
                     <div class="alert alert-success">
                         {{ session('status') }}
                     </div>
+                </div>
                 @endif
                 {!! csrf_field() !!}
                 <fieldset>
-                    <legend>Editar Usuario</legend>
+                    <div class="col-md-10">
+                        <legend class="text-center">Editar Usuario</legend>
+                    </div>
                     <div class="form-group">
                         <label for="name" class="col-lg-label">Imagen</label>
                         <div class="col-md-10">
@@ -28,12 +32,12 @@
                                     @endif
                                 </div>
                                 <div class="review_content">
-                                <div class="review_text">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input " id="user_img" name="user_img" >
-                                        <label class="custom-file-label" for="customFile">Imagen</label>
+                                    <div class="review_text">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input " id="user_img" name="user_img" >
+                                            <label class="custom-file-label" for="customFile">Imagen</label>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                             </li>
                         </div>
@@ -69,13 +73,18 @@
                     <div class="form-group ">
                         <label for="telefono" class="col-lg-label">Tipo de Documento</label>
                         <div class="col-lg-10">
-                            <select class="form-control" id="documento_tipo" name="documento_tipo" > 
+                            <select class="form-control" id="documento_tipo" name="documento_tipo" >     
+                            @if($usuario->documento_tipo=="")
+                                <option value="DNI" >DNI</option>
+                                <option value="RUC" >RUC</option>
+                            @else
                                 <option value="{{$usuario->documento_tipo}}">{{$usuario->documento_tipo}}</option>
                                 @if ($usuario->documento_tipo=="DNI")
                                     <option value="RUC" >RUC</option>
                                 @else
                                     <option value="DNI" >DNI</option>
                                 @endif
+                            @endif
                             </select>
                         </div>
                     </div>
@@ -88,7 +97,7 @@
                     </div>
  
                     <div class="form-group">
-                        <div class="col-lg-10 col-lg-offset-2">
+                        <div class="col-lg-10 col-lg-offset-2 d-flex justify-content-center">
                             <a class="btn btn-dange" href="{{ url('/') }}" role="button">Cancelar</a>
                             <button type="submit" class="btn btn-dark">Actualizar</button>
                         </div>

@@ -1,14 +1,14 @@
 @extends('layouts.app')
    
 
-    <div style="margin-top:16vh"></div>
+    <div style="margin-top:20vh"></div>
     <div class="container">
 
         <div class="row" style="margin-bottom:-50px">
             <div class="col">
                 <div class="current_page">
                     <ul>
-                        <li><a href="{{action('ProductoController@index')}}" class="badge badge-light">
+                        <li><a href="{{action('ProductoController@busqueda')}}" class="badge badge-light">
                                 <h3> Ver todos los servicios</h3>
                             </a>
                         </li>

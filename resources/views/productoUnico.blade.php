@@ -1,14 +1,14 @@
 @extends('layouts.app')
    
 
-    <div style="margin-top:16vh"></div>
+    <div style="margin-top:20vh"></div>
     <div class="container">
 
         <div class="row" style="margin-bottom:-50px">
             <div class="col">
                 <div class="current_page">
                     <ul>
-                        <li><a href="{{action('ProductoController@index')}}" class="badge badge-light">
+                        <li><a href="{{action('ProductoController@busqueda')}}" class="badge badge-light p-2">
                                 <h3> Ver todos los productos</h3>
                             </a>
                         </li>
@@ -27,7 +27,7 @@
 
             <div class="col-lg-5">
                 <div class="product_content">
-                    <h2 class="product_name" style="font-weight: bold">{{$producto->prod_nombre}}</h2>
+                    <h2 class="product_name" style="font-weight: bold; line-height: 150%">{{$producto->prod_nombre}}</h2>
                     <div class="review_date">{{$producto->created_at->toFormattedDateString()}}</div>
                     
                     <div class="product_text">
@@ -37,9 +37,11 @@
                     <div class="product_price"><h6>S/{{($producto->prod_precio)}}</h6></div>						
                     
                     <div class="product_price"><h6>Stock: {{($producto->prod_stock)}}</h6></div>  
+                    <br>
+                    <div class="product_price"><h6>Anunciante: {{($dueño->name)}}</h6></div>
                     @if (is_null($dueño->email))
-                        @else
-                        <div class="product_price"><h6>Correo: {{($dueño->email)}}</h6></div>
+                    @else
+                    <div class="product_price"><h6>Correo: {{($dueño->email)}}</h6></div>
                     @endif
                    
                     <div class="product_price"><h6>Teléfono: {{($dueño->telefono)}}</h6></div>                             

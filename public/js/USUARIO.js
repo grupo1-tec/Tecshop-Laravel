@@ -18,7 +18,8 @@ function validarExt()
             var visor = new FileReader();
             visor.onload=function(e)
             {
-                '<h3>hola Mundo</h3><embed src="'+e.target.result+'" style="height: auto; max-width: 100%; max-height: 100%; border-radius: 50%; border: 2px solid black;">'
+                document.getElementById('visorArchivo').innerHTML=
+                '<embed src="'+e.target.result+'" style="height: auto; max-width: 100%; max-height: 100%; border-radius: 50%; border: 2px solid black;">' ;         
                 
             };
             visor.readAsDataURL(archivoInput.files[0])

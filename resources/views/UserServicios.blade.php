@@ -17,7 +17,7 @@
                 <form method="POST" action="{{ url("servicios/{$servicio->id}") }}">
                     @csrf
                     @method('DELETE')
- 
+                    <a type="button" class="btn btn-outline-warning" href="{{action('ServiciosController@edit', $servicio->id)}}">Editar</a>
                     <button type="submit" class="btn btn-outline-danger">Eliminar</button>
                 </form>
             </div>

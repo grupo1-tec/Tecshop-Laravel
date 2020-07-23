@@ -20,10 +20,5 @@ class CheckAdmin
             return redirect('home');
         }
         return $next($request);
-
-        // if (auth()->check() && auth()->user()->admin == "true"){
-        //     return $next($request);
-        // }
-        // return redirect('/');
     }
 }

@@ -110,9 +110,13 @@ class UserController extends Controller
         $servicios = Servicios::where("user_id","=",$id)->get();
         $productos = Producto::where("user_id","=",$id)->get();
         for($i=0; $i<count($servicios); $i++){
+            $image = $servicios[$i]->ser_img;
+            unlink($image);
             $servicios[$i]->delete();
         }
         for($i=0; $i<count($productos); $i++){
+            $image = $productos[$i]->prod_img;
+            unlink($image);
             $productos[$i]->delete();
         }
         $allservicios = Servicios::all();
@@ -134,7 +138,14 @@ class UserController extends Controller
                 }
             }
         }
+
+        if($usuario->user_img != ""){
+            $name="/home/ubuntu/Workplace/TecShop/Laravel/tecshop/public/".$usuario->user_img;
+            unlink($name);
+        }
         $usuario->delete();
+        
         return redirect('/usuarios/eliminar');
     }
+
 }

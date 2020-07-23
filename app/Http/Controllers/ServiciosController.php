@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Servicios;
 use App\User;
 use App\Banner;
+use App\Categorias;
 use Illuminate\Http\Request;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +41,7 @@ class ServiciosController extends Controller
         $nombre = $request->get('ser_nombre');
         $descripcion = $request->get('ser_descripcion');
         $precio = $request->get('ser_precio');
+        $categoria = $request->get('id');
         $userID = Auth::id();
         
         $servicio = new Servicios();
@@ -48,6 +50,7 @@ class ServiciosController extends Controller
         $servicio->ser_descripcion = $descripcion;
         $servicio->ser_precio = $precio;
         $servicio->user_id = $userID;
+        $servicio->categoria_id = $categoria;
         $servicio->save();
 
         $request->ser_img->move(public_path('img'),$imageName);
@@ -83,9 +86,12 @@ class ServiciosController extends Controller
         return view('servicioUnico',['servicio' => $servicio, 'recomendados' => $servicios, 'dueño' => $dueño]);
     }
 
-    public function edit(Servicios $servicios)
+    public function edit($id)
     {
-        //
+        $servicio = Servicios::find($id);
+        $categorias = Categorias::all();
+        $categoriax = Categorias::find($servicio->categoria_id);
+        return view('edit_servicio', compact('servicio', 'categorias', 'categoriax'));
     }
 
     public function read($id,$idn){
@@ -101,9 +107,38 @@ class ServiciosController extends Controller
         return redirect()->route('servicio',['id' => $id]);
     }
 
-    public function update(Request $request, Servicios $servicios)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'ser_nombre' => 'required:max:120',
+            'ser_descripcion' => 'required:max:500',
+            'ser_precio' => 'required:max:10',
+        ]);
+        
+        $nombre = $request->get('ser_nombre');
+        $descripcion = $request->get('ser_descripcion');
+        $precio = $request->get('ser_precio');
+        $categoria = $request->get('id');
+        
+        $servicio = Servicios::find($id);
+        $servicio->ser_nombre = $nombre;
+        $servicio->ser_descripcion = $descripcion;
+        $servicio->ser_precio = $precio;
+        $servicio->categoria_id = $categoria;
+
+        if($request->file('ser_img')){
+            if($servicio->ser_img != ""){
+                $name="/home/ubuntu/Workplace/TecShop/Laravel/tecshop/public/".$servicio->ser_img;
+                unlink($name);
+            }
+            $image=$request->file('ser_img');
+            $imageName =time().$image->getClientOriginalName();
+            $image->move(public_path('img'),$imageName);
+            $servicio->ser_img="img/".$imageName;
+        }
+
+        $servicio->save();
+        return redirect(action('ServiciosController@show',$servicio->id))->with('status', 'El Servicio ha sido actualizado');
     }
 
     public function userServicios()
@@ -116,6 +151,10 @@ class ServiciosController extends Controller
     public function destroy($id)
     {
         $servicio = Servicios::find($id);
+        if($servicio->ser_img != ""){
+            $name="/home/ubuntu/Workplace/TecShop/Laravel/tecshop/public/".$servicio->ser_img;
+            unlink($name);
+        }
         $servicio->delete();
         return redirect('/servicios/MiServicios');
     }

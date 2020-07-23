@@ -133,12 +133,12 @@ class ProductoController extends Controller
             }
             $image=$request->file('prod_img');
             $imageName =time().$image->getClientOriginalName();
-            $image->move(public_path('img/'),$imageName);
-            $$producto->prod_img="img/".$imageName;
+            $image->move(public_path('img'),$imageName);
+            $producto->prod_img="img/".$imageName;
         }
 
         $producto->save();
-        return redirect(action('ProductoController@edit',$producto->id))->with('status', 'El Producto ha sido actualizado');
+        return redirect(action('ProductoController@show',$producto->id))->with('status', 'El Producto ha sido actualizado');
     }
 
 
@@ -165,7 +165,10 @@ class ProductoController extends Controller
     public function destroy($id)
     {
         $producto = Producto::find($id);
-
+        if($producto->prod_img != ""){
+            $name="/home/ubuntu/Workplace/TecShop/Laravel/tecshop/public/".$producto->prod_img;
+            unlink($name);
+        }
         $producto->delete();
         return redirect('/productos/MiProductos');
     }
@@ -175,10 +178,12 @@ class ProductoController extends Controller
         $nombreM =$request->get('buscarpor');
         if(empty($nombreM)){
             $productos =Producto::all();
-            return view('index2',compact('productos'));
+            $banner = Banner::all();
+            return view('index2',compact('productos','banner'));
         }else{
             $productos =Producto::where('prod_nombre','like',"%$nombreM%")->get();
-            return view('index2',compact('productos'));
+            $banner = Banner::all();
+            return view('index2',compact('productos','banner'));
         }
     }
 }

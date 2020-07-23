@@ -33,7 +33,7 @@
                         </h4>
                     </div>
                     <div>
-                        <form method="POST" action="{{ url("usuarios/{$usuario->id}") }}">
+                        <form method="POST" class="form-inline" action="{{ url("usuarios/{$usuario->id}") }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger mx-3">Eliminar</button>
@@ -65,10 +65,11 @@
                         </h4>
                     </div>
                     <div>
-                        <form method="POST" action="{{ url("usuarios/{$usuario->id}") }}">
+                        <form method="POST" class="form-inline" action="{{ url("usuarios/{$usuario->id}") }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger mx-3">Eliminar</button>
+                            
                         </form>
                     </div>
                     <br>

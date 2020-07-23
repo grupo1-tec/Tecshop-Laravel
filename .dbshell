@@ -78,3 +78,6 @@ show collections
 use TecShop
 show collections
 db.users.find().pretty()
+use TecShop
+show collections
+db.users.find()

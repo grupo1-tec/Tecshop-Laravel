@@ -21,7 +21,7 @@ Route::get('/welcome',function(){
 Auth::routes();
 #Route::redirect('/', 'principal');
 
-Route::get('/productos', 'ProductoController@index')->name('productosindex');
+#Route::get('/productos', 'ProductoController@index')->name('productosindex');
 Route::get('/productos/MiProductos', 'ProductoController@userProductos')->name('MiProductos');
 Route::delete('/productos/{id}', 'ProductoController@destroy')->name('productos.destroy');
 Route::get('/productos/create','ProductoController@create');
@@ -42,6 +42,8 @@ Route::get('/servicios/create','CategoriasController@allserv');
 Route::get('/servicios/read/{id}/{idn}','ServiciosController@read');
 Route::get('/servicios/{id}', 'ServiciosController@show')->name('servicio');
 Route::post('/servicios','ComentarioController@store');
+Route::get('/servicios/edit/{id}','ServiciosController@edit');
+Route::put('/servicios/edit/{id}','ServiciosController@update');
 
 //Rutas para realizar el CRUD de usuarios
 Route::get('/usuarios/eliminar', 'UserController@index')->name('usuarios');
@@ -54,7 +56,7 @@ Route::post('/administrador/create', 'UserController@createAdmin')->name('regist
 Route::get('/categoria/create','CategoriasController@create');
 Route::post('/categoria/create','CategoriasController@store');
 Route::get('/categorias/admin','CategoriasController@allx');
-// Route::put();
+
 Route::delete('/categorias/{id}','CategoriasController@destroy');
 Route::get('/categorias/edit/{id}','CategoriasController@edit');
 Route::put('/categorias/edit/{id}','CategoriasController@update');
@@ -66,8 +68,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-//Busqueda Productos (Ruta de pruebas)
-Route::get('/buscarProd', 'ProductoController@busqueda');
+//Busqueda Productos 
+Route::get('/productos', 'ProductoController@busqueda');
 Route::get('/servicios', 'ServiciosController@busqueda');
 
 //Ruta Administrar Banner

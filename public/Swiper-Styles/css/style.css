@@ -12,17 +12,17 @@ font-family: montserrat,sans-serif;
 background-color: rgba(241,241,241,1.00);
 }
 .ContenedorProductos{
-    width: 88%;
-    height: 430px;
-    border: 1px solid black;
-    padding-left: 10px;
-    padding-right: 15px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 2px;
-    margin-bottom: 2px;   
+width: 88%;
+height: 430px;
+border: 1px solid black;
+padding-left: 10px;
+padding-right: 15px;
+padding-top: 20px;
+padding-bottom: 20px;
+margin-left: 5%;
+margin-right: 5%;
+margin-top: 2px;
+margin-bottom: 2px;
 }
 .swiper-slide{
 width: 250px !important;

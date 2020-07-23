@@ -76,7 +76,7 @@
 <div class="heading">
         <h1>{{$categoria->cat_nombre}}</h1>
     </div>
-<div class="ContenedorProductos" style="background-image: url('img/fondo4.jpg');">
+<div class="ContenedorProductos" style="background-image: url('img/fondo4.jpg'); border-radius: 5px;">
     
     <div class="swiper-container">
         <div class="swiper-wrapper">
@@ -85,7 +85,7 @@
             <!-- slide 1-------------------------------->
             <div class="swiper-slide">
                 <div class="slider-box">
-                    <p class="time">{{$producto->prod_nombre}}</p>
+                    <a href="{{ action('ProductoController@show', $producto->id) }}" class="time">{{$producto->prod_nombre}}</a>
                     <div class="img-box">
                         <img src="{{asset($producto->prod_img)}}" alt="">
                     </div> 
@@ -118,7 +118,7 @@
     <div class="heading">
         <h1>P R O D U C T &emsp; S E R V I C E &emsp; 2</h1>
     </div>
-<div class="ContenedorProductos" style="background-image: url('img/fondo4.jpg');">
+<div class="ContenedorProductos" style="background-image: url('img/fondo4.jpg'); border-radius: 5px;">
     <div class="swiper-container">
         <div class="swiper-wrapper">
         @foreach($servicios as $servicio)
@@ -149,6 +149,9 @@
     </div>
     <!-- Swiper Slider end -->
 </div>
+
+
+@extends('layouts.footer')
 
 
 

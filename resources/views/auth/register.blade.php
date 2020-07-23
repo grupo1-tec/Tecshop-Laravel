@@ -14,7 +14,7 @@
                 <br>
                 <div align="center">
                     <div style="height:250px; width:250px; position: relative;">
-                        <div style="height:250px" id="visorArchivo" >
+                        <div id="visorArchivo" style="height:250px"  >
                              <!-- Aqui se despliega el preview -->
                             <img src="{{asset('img/users/unnamed.jpg')}}" alt="" style="height: auto; max-width: 100%; max-height: 100%; border-radius: 50%; border: 2px solid black;">
                         </div>

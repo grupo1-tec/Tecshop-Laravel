@@ -92,53 +92,54 @@
                 </form>
 			</div>
             @auth
-            <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    Notificaciones <span class="caret"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    @foreach(Auth::user()->unreadNotifications as $notification)
-                        @if($notification->data['tipo']=="servicio")
-                            <a class="dropdown-item" href="{{ action('ServiciosController@read',['id'=> $notification->data['post'], 'idn'=>$notification->_id]) }}">
-                                <div class="review_image">
-                                    @if(App\User::find($notification->data["user"]) !="")
-                                        <img src="{{asset(App\User::find($notification->data['user'])->user_img)}}" alt="">
-                                    @else
-                                        <img src="{{asset('img/users/unnamed.jpg')}}" alt="">
-                                    @endif
-                                </div>
-                                <div class="review_content">
-                                    <div class="review_text">
-                                        {{ App\User::find($notification->data["user"])->name }} comentó la publicación de tu servicio.
-                                    </div>
-                                </div>
-                            </a>
-                        @else
-                            <a class="dropdown-item" href="{{ action('ProductoController@read',[ 'id'=>$notification->data['post'],'idn'=> $notification->_id] )}}">
-                                <div class="review_image">
-                                    @if(App\User::find($notification->data["user"]) !="")
-                                        <img src="{{asset(App\User::find($notification->data['user'])->user_img)}}" alt="">
-                                    @else
-                                        <img src="{{asset('img/users/unnamed.jpg')}}" alt="">
-                                    @endif
-                                </div>
-                                <div class="review_content">
-                                    <div class="review_text">
-                                {{ App\User::find($notification->data["user"])->name }} comentó la publicación de tu producto.
-                                    </div>
-                                </div>
-                            </a>
-                        @endif
-                    @endforeach
-                    <a class="dropdown-item" href="{{ action('UserController@notificate') }}">
-                        Mostrar todas las notificaciones
-                    </a>
-                </div>
-            </li>
+            
             @endauth
 			<nav class="menu_nav navbar">
 				<ul class="menu_mm navbar-nav">
                     @auth
+                    <li class="menu_mm nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            NOTIFICACIONES <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            @foreach(Auth::user()->unreadNotifications as $notification)
+                                @if($notification->data['tipo']=="servicio")
+                                    <a class="dropdown-item" href="{{ action('ServiciosController@read',['id'=> $notification->data['post'], 'idn'=>$notification->_id]) }}">
+                                        <div class="review_image">
+                                            @if(App\User::find($notification->data["user"]) !="")
+                                                <img src="{{asset(App\User::find($notification->data['user'])->user_img)}}" alt="">
+                                            @else
+                                                <img src="{{asset('img/users/unnamed.jpg')}}" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="review_content">
+                                            <div class="review_text">
+                                                {{ App\User::find($notification->data["user"])->name }} comentó la publicación de tu servicio.
+                                            </div>
+                                        </div>
+                                    </a>
+                                @else
+                                    <a class="dropdown-item" href="{{ action('ProductoController@read',[ 'id'=>$notification->data['post'],'idn'=> $notification->_id] )}}">
+                                        <div class="review_image">
+                                            @if(App\User::find($notification->data["user"]) !="")
+                                                <img src="{{asset(App\User::find($notification->data['user'])->user_img)}}" alt="">
+                                            @else
+                                                <img src="{{asset('img/users/unnamed.jpg')}}" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="review_content">
+                                            <div class="review_text">
+                                        {{ App\User::find($notification->data["user"])->name }} comentó la publicación de tu producto.
+                                            </div>
+                                        </div>
+                                    </a>
+                                @endif
+                            @endforeach
+                            <a class="dropdown-item" href="{{ action('UserController@notificate') }}">
+                                Mostrar todas las notificaciones
+                            </a>
+                        </div>
+                    </li>
                         @if (Auth::user()->admin == "true")
                             <li class="menu_mm nav-item dropdown">
                                 <a id="navbarDropdown1" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

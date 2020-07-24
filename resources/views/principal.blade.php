@@ -146,7 +146,7 @@
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
 
-    </div>
+    </div> 
     <!-- Swiper Slider end -->
 </div>
 

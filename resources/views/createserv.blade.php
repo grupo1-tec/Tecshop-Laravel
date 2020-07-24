@@ -44,7 +44,7 @@
                 <div class="form-group">
                     <label class="col-sm-8 col-form-label" for="ser_precio">{{ __('Precio: ') }}</label>
                     <div class="col-sm-12"> 
-                        <textarea class="form-control{{ $errors->has('ser_precio') ? ' is-invalid' : '' }}" if="ser_precio" name="ser_precio" rows="3">{{ old('ser_precio') }}</textarea>
+                        <input id="ser_precio" type="number" class="form-control{{ $errors->has('ser_precio') ? ' is-invalid' : '' }}" if="ser_precio" name="ser_precio" value="{{ old('ser_precio') }}" required autocomplete="ser_precio" autofocus>
                         @if ($errors->has('ser_precio'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('ser_precio') }}</strong>

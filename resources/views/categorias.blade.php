@@ -2,6 +2,17 @@
 
 <div style="margin-top:20vh"></div>
 <div class="container">
+    @if(session('status'))
+        @if(substr(session('status'),0,2) == "La")
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @else
+            <div class="alert alert-danger">
+                {{ session('status') }}
+            </div>
+        @endif
+    @endif
     <div class="table-responsive">
         <table class="table">
             <thead class="thead-dark">

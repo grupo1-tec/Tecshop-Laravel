@@ -11,7 +11,7 @@
                     <label class="col-md-4 col-form-label text-md-right"></label>
                     <div class="col-md-6">
                         <a href="{{ route('social.auth', 'facebook') }}">
-                            <label class="facebook"> Continua con Facebook</label>
+                            <img src="{{asset('img/social/facebook.jpg')}}" alt="">
                         </a>
 
                     </div>
@@ -20,7 +20,7 @@
                         <label class="col-md-4 col-form-label text-md-right"></label>
                         <div class="col-md-6">
                             <a href="{{ route('social.auth', 'google') }}">
-                                <label class="google" for="">Continua con google</label>
+                                <img src="{{asset('img/social/google.jpg')}}" alt="">
                             </a>
                         </div>
                     </div>

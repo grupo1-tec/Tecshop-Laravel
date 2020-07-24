@@ -83,15 +83,21 @@ class ServiciosController extends Controller
         $servicio = Servicios::find($id);
         $dueño = User::find($servicio->user_id);
         $servicios = Servicios::where('categoria_id', '=', $servicio->categoria_id)->where('_id', '<>', $id)->get();
+        
         return view('servicioUnico',['servicio' => $servicio, 'recomendados' => $servicios, 'dueño' => $dueño]);
     }
 
     public function edit($id)
     {
         $servicio = Servicios::find($id);
-        $categorias = Categorias::all();
-        $categoriax = Categorias::find($servicio->categoria_id);
-        return view('edit_servicio', compact('servicio', 'categorias', 'categoriax'));
+        if($servicio->user_id == Auth::id()){
+            $categorias = Categorias::all();
+            $categoriax = Categorias::find($servicio->categoria_id);
+            return view('edit_servicio', compact('servicio', 'categorias', 'categoriax'));
+        }else{
+            return redirect()->route('principal');
+        }
+        
     }
 
     public function read($id,$idn){

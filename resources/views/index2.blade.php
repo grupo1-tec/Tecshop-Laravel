@@ -9,8 +9,8 @@
                     <div class="home_slider_background" style="background-image:url({{asset($ban->banner_img)}}"></div>
                     <div class="home_slider_content">
                         <div class="home_slider_content_inner">
-                            <div class="home_slider_subtitle">Promo Prices</div>
-                            <div class="home_slider_title">New Collection</div>
+                            <div class="home_slider_subtitle">{{$ban->title}}</div>
+                            <div class="home_slider_title">{{$ban->subtitle}}</div>
                         </div>
                     </div>
                 </div>
@@ -38,8 +38,8 @@
                 <div class="row">
                     <div class="col">
                         <div class="section_title_container text-center">
-                            <div class="section_subtitle">only the best</div>
-                            <div class="section_title">Destacados</div>
+                            <div class="section_subtitle">Los mejores precios</div>
+                            <div class="section_title">Productos</div>
                         </div>
                     </div>
                 </div>                

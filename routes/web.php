@@ -14,6 +14,9 @@ Route::get('/notificate','UserController@notificate');
 Route::get('/', function () {
     return view('principal',);
 })->name('principal');
+Route::put('/', function () {
+    return view('principal',);
+})->name('principal');
 
 Route::get('/welcome',function(){
     return view('welcome');
@@ -50,7 +53,7 @@ Route::get('/usuarios/eliminar', 'UserController@index')->name('usuarios');
 Route::get('usuario/editar', 'UserController@edit')->name('editarUsuario');
 Route::put('usuario/editar', 'UserController@update');
 Route::delete('/usuarios/{id}', 'UserController@destroy')->name('usuarios.destroy');
-Route::get('/administrador/create', function () { return view('create_admin',); })->name('crear_admin');
+Route::get('/administrador/create', function () { return view('create_admin',); })->name('crear_admin')->middleware('auth','admin');
 Route::post('/administrador/create', 'UserController@createAdmin')->name('registerAdmin');
 
 Route::get('/categoria/create','CategoriasController@create');
@@ -70,6 +73,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Busqueda Productos 
 Route::get('/productos', 'ProductoController@busqueda');
+//Busqueda Servicios
 Route::get('/servicios', 'ServiciosController@busqueda');
 
 //Ruta Administrar Banner

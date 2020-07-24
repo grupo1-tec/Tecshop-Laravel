@@ -13,10 +13,13 @@ class CategoriaControllerAPI extends Controller
         $categorias = Categorias::all();
         return CategoriaResources::collection($categorias);
     }
-    public function store(Request $request)
+    public function create(Request $request)
     {
-        $categoria = Categorias::create($request->all());
-        return $categoria;
+        $categoria = Categorias::create([
+            'cat_nombre' => $request->get('nombre'),
+        ]);
+
+        return new CategoriaResources($categoria);
     }
     public function show($id)
     {

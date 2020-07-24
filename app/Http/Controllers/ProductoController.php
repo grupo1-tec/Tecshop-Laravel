@@ -14,7 +14,7 @@ class ProductoController extends Controller
     
     public function __construct()
     {
-        $this->middleware('auth')->only(['create','edit']);
+        $this->middleware('auth')->only(['create','edit','store']);
     }
 
     public function index()
@@ -99,9 +99,13 @@ class ProductoController extends Controller
     public function edit($id)
     {
         $producto = Producto::find($id);
-        $categorias = Categorias::all();
-        $categoriax = Categorias::find($producto->categoria_id);
-        return view('edit_producto', compact('producto', 'categorias', 'categoriax'));
+        if($producto->user_id == Auth::id()){
+            $categorias = Categorias::all();
+            $categoriax = Categorias::find($producto->categoria_id);
+            return view('edit_producto', compact('producto', 'categorias', 'categoriax'));
+        }else{
+            return redirect()->route('principal');
+        }
     }
 
     public function update(Request $request, $id)

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Categorias;
+use App\Servicios;
+use App\Producto;
 use Illuminate\Http\Request;
 
 class CategoriasController extends Controller
@@ -37,7 +39,7 @@ class CategoriasController extends Controller
         $categoria->cat_nombre =  $nombre;
         $categoria->save();
 
-        return redirect()->route('/');
+        return redirect('/categorias/admin');
     }
 
     public function allx()
@@ -63,7 +65,26 @@ class CategoriasController extends Controller
     public function destroy($id)
     {
         $categoria = Categorias::find($id);
-        $categoria->delete();
-        return redirect('/categorias/admin');
+        $servicios = Servicios::all();
+        $productos = Producto::all();
+        $contador = 0;
+        for($i=0; $i<count($servicios); $i++){
+            if($servicios[$i]->categoria_id == $id){
+                $contador++;
+            }
+        }
+        for($i=0; $i<count($productos); $i++){
+            if($productos[$i]->categoria_id == $id){
+                $contador++;
+            }
+        }
+        $name = $categoria->cat_nombre;
+        if($contador == 0){
+            $categoria->delete();
+            return redirect(action('CategoriasController@allx'))->with('status', "La categoría $name fué eliminada correctamente");
+        }else{
+            return redirect(action('CategoriasController@allx'))->with('status', "No se eliminó la categoría $name, ya que hay $contador productos/servicios con esa categoría.");
+        }
+        
     }
 }

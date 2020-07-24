@@ -69,12 +69,7 @@
 					</ul>
 				</nav>
 				<div class="header_content">
-					<div class="search header_search">
-						<form action="#">
-							<input type="search" class="search_input">
-							<button type="submit" id="search_button" class="search_button" ><img src="{{asset('img/magnifying-glass.svg')}}" alt=""></button>
-						</form>
-					</div>
+					
 					<div></div>
 				</div>
 				
@@ -119,9 +114,10 @@
                                         </div>
                                     </a>
                                 @else
+                                    @if(App\User::find($notification->data["user"]) != null)
                                     <a class="dropdown-item" href="{{ action('ProductoController@read',[ 'id'=>$notification->data['post'],'idn'=> $notification->_id] )}}">
                                         <div class="review_image">
-                                            @if(App\User::find($notification->data["user"]) !="")
+                                            @if(App\User::find($notification->data["user"])->user_img !="")
                                                 <img src="{{asset(App\User::find($notification->data['user'])->user_img)}}" alt="">
                                             @else
                                                 <img src="{{asset('img/users/unnamed.jpg')}}" alt="">
@@ -133,6 +129,7 @@
                                             </div>
                                         </div>
                                     </a>
+                                    @endif
                                 @endif
                             @endforeach
                             <a class="dropdown-item" href="{{ action('UserController@notificate') }}">

@@ -8,7 +8,7 @@
             <div class="col">
                 <div class="current_page">
                     <ul>
-                        <li><a href="{{action('ProductoController@busqueda')}}" class="badge badge-light">
+                        <li><a href="{{action('ServiciosController@busqueda')}}" class="badge badge-light">
                                 <h3> Ver todos los servicios</h3>
                             </a>
                         </li>

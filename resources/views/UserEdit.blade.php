@@ -8,13 +8,7 @@
                 @foreach ($errors->all() as $error)
                     <div class="alert alert-danger">{{ $error }}</div>
                 @endforeach
-                @if(session('status'))
-                <div class="col-md-10">
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                </div>
-                @endif
+
                 {!! csrf_field() !!}
                 <fieldset>
                     <div class="col-md-10">

@@ -70,7 +70,7 @@
 
 
 <div class="heading">
-    <h1>P R O D U C T &emsp; F O R &emsp; C A T E G O R Y</h1>
+    <h1>P R O D U C T O S  &emsp; P O R &emsp; C A T E G O R I A</h1>
 </div>
 @foreach($categorias as $categoria)
 <div class="heading">
@@ -116,7 +116,7 @@
 
 <!-- Swiper Slider 2 cellphones -------->
     <div class="heading">
-        <h1>P R O D U C T &emsp; S E R V I C E &emsp; 2</h1>
+        <h1>&emsp; S E R V I C i o S &emsp;</h1>
     </div>
 <div class="ContenedorProductos" style="background-image: url('img/fondo4.jpg'); border-radius: 5px;">
     <div class="swiper-container">
